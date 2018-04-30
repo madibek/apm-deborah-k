@@ -10,13 +10,22 @@ import { MatTableDataSource } from '@angular/material';
 export class ProductListComponent implements OnInit {
 
   pageTitle = 'Product list';
+  imgWidth = 50;
+  imgMargin = 2;
+  showImage = false;
 
-  displayedColumns = ['productId', 'productName', 'productCode', 'releaseDate'];
+  displayedColumns = [
+      'productId', 'productName', 'productCode', 'releaseDate', 'price', 'starRating'
+    ];
   dataSource = new MatTableDataSource(PRODUCT_LIST_DATA);
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleImg() {
+      this.showImage = !this.showImage;
   }
 
 }

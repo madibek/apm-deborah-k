@@ -18,28 +18,52 @@
           
             <mat-table #table [dataSource]="dataSource">
           
-              <!-- ProductId Column -->
+              <!-- ProductImage Column -->
               <ng-container matColumnDef="productId">
-                <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.productId}} </mat-cell>
+                <mat-header-cell *matHeaderCellDef>
+                  <button mat-raised-button color="primary" (click)="toggleImg()">
+                    Show Image
+                  </button>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let product">
+                  <img 
+                  *ngIf="showImage"
+                  [src]="product.imageUrl"
+                  [title]="product.productName"
+                  [style.width.px]="imgWidth"
+                  [style.margin.px]="imgMargin"
+                  >
+                </mat-cell>
               </ng-container>
           
               <!-- ProductName Column -->
               <ng-container matColumnDef="productName">
                 <mat-header-cell *matHeaderCellDef> Product </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.productName}} </mat-cell>
+                <mat-cell *matCellDef="let product"> {{product.productName}} </mat-cell>
               </ng-container>
           
               <!-- ProductCode Column -->
               <ng-container matColumnDef="productCode">
                 <mat-header-cell *matHeaderCellDef> Code </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.productCode}} </mat-cell>
+                <mat-cell *matCellDef="let product"> {{product.productCode | lowercase}} </mat-cell>
               </ng-container>
           
               <!-- ReleaseDate Column -->
               <ng-container matColumnDef="releaseDate">
                 <mat-header-cell *matHeaderCellDef> Available </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.releaseDate}} </mat-cell>
+                <mat-cell *matCellDef="let product"> {{product.releaseDate | date: 'dd.MM.yyyy'}} </mat-cell>
+              </ng-container>
+
+              <!-- price Column -->
+              <ng-container matColumnDef="price">
+                <mat-header-cell *matHeaderCellDef> Price  </mat-header-cell>
+                <mat-cell *matCellDef="let product"> {{product.price | currency:'USD':true:'1.2-2'}} </mat-cell>
+              </ng-container>
+
+              <!-- starRating Column -->
+              <ng-container matColumnDef="starRating">
+                <mat-header-cell *matHeaderCellDef> 5 Star Rating </mat-header-cell>
+                <mat-cell *matCellDef="let product"> {{product.starRating}} </mat-cell>
               </ng-container>
           
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
