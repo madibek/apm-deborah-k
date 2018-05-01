@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import { Product } from '../model/product';
+import { FormControl, Validators } from '@angular/forms';
+
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/map';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -13,6 +19,7 @@ export class ProductListComponent implements OnInit {
   imgWidth = 50;
   imgMargin = 2;
   showImage = false;
+  filter: FormControl;
 
   displayedColumns = [
       'productId', 'productName', 'productCode', 'releaseDate', 'price', 'starRating'
@@ -22,15 +29,28 @@ export class ProductListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+      this.filter = new FormControl('', {});
+      this.filter.valueChanges
+        .debounceTime(500)
+        .distinctUntilChanged()
+        .subscribe(value => {
+          this.applyFilter(value);
+      });
   }
 
   toggleImg() {
       this.showImage = !this.showImage;
   }
 
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+
 }
 
-const PRODUCT_LIST_DATA: any[] = [
+const PRODUCT_LIST_DATA: Product[] = [
   {
     'productId': 1,
     'productName': 'Leaf Rake',

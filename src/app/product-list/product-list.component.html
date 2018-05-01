@@ -12,7 +12,7 @@
         <div class="example-container mat-elevation-z8">
             <div class="example-header">
               <mat-form-field>
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                <input matInput [formControl]="filter" placeholder="Filter">
               </mat-form-field>
             </div>
           
@@ -22,7 +22,7 @@
               <ng-container matColumnDef="productId">
                 <mat-header-cell *matHeaderCellDef>
                   <button mat-raised-button color="primary" (click)="toggleImg()">
-                    Show Image
+                    {{showImage ? 'Hide': 'Show'}} Image
                   </button>
                 </mat-header-cell>
                 <mat-cell *matCellDef="let product">
@@ -45,7 +45,7 @@
               <!-- ProductCode Column -->
               <ng-container matColumnDef="productCode">
                 <mat-header-cell *matHeaderCellDef> Code </mat-header-cell>
-                <mat-cell *matCellDef="let product"> {{product.productCode | lowercase}} </mat-cell>
+                <mat-cell *matCellDef="let product"> {{product.productCode | lowercase | convertToSpace:'-'}} </mat-cell>
               </ng-container>
           
               <!-- ReleaseDate Column -->
