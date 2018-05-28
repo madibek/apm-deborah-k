@@ -63,7 +63,15 @@
               <!-- starRating Column -->
               <ng-container matColumnDef="starRating">
                 <mat-header-cell *matHeaderCellDef> 5 Star Rating </mat-header-cell>
-                <mat-cell *matCellDef="let product"> {{product.starRating}} </mat-cell>
+                <mat-cell *matCellDef="let product">
+                   <!-- {{product.starRating}}  -->
+                    <pm-star 
+                    [rating]="product.starRating"
+                    [starCount]="5"
+                    [color]="'accent'"
+                    (ratingUpdated)="onRatingChanged($event, product)">
+                  </pm-star>
+                  </mat-cell>
               </ng-container>
           
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

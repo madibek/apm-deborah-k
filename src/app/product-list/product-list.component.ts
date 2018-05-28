@@ -48,6 +48,11 @@ export class ProductListComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
+  onRatingChanged(rating, product) {
+    console.log(rating);
+    product.starRating = rating;
+  }
+
 }
 
 const PRODUCT_LIST_DATA: Product[] = [
