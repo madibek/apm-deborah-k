@@ -37,7 +37,7 @@ jobs:
       # - run: yarn ng build --prod --build-optimizer --no-progress
       # - run: yarn ng test --single-run --no-progress
 
-      test:
-        override:
-          - echo "done"
+      - test:
+          override:
+            - echo "done"
 
