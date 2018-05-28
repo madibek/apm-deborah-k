@@ -39,5 +39,5 @@ jobs:
 
       - test:
           override:
-            - echo "done"
+            - echo "true"
 
