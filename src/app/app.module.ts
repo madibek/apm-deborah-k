@@ -20,6 +20,7 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ConvertToSpacePipe } from './pipes/convert-to-space.pipe';
 import { StarComponent } from './shared/star/star.component';
+import { ProductService } from './services/product.service';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { StarComponent } from './shared/star/star.component';
     MatTooltipModule
   ],
   providers: [
-    MatSnackBar
+    MatSnackBar,
+    ProductService
   ],
   entryComponents: [
     StarComponent
