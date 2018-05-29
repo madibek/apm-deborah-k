@@ -31,7 +31,9 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
 
-      this.dataSource = new MatTableDataSource(this.productApi.getProducts());
+    //   this.dataSource = new MatTableDataSource(this.productApi.getProducts());
+    this.productApi.getProducts()
+        .subscribe(data => this.dataSource = new MatTableDataSource(data))
     
       this.filter = new FormControl('', {});
       this.filter.valueChanges

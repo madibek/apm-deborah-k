@@ -21,6 +21,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ConvertToSpacePipe } from './pipes/convert-to-space.pipe';
 import { StarComponent } from './shared/star/star.component';
 import { ProductService } from './services/product.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { ProductService } from './services/product.service';
     BrowserModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatCardModule,
     MatFormFieldModule,
     MatTableModule,
