@@ -1,4 +1,14 @@
-<div>
-    <h2>Welcome to Angular!</h2>
-    <pm-product-list></pm-product-list>
-</div>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>ACME Management App</span>
+      <span class="example-spacer"></span>
+      <!-- <mat-icon class="example-icon">Home</mat-icon>
+      <mat-icon class="example-icon">ProductList</mat-icon> -->
+      <a class="example-icon" [routerLink]="'/welcome'">Home</a>
+      <a class="example-icon" [routerLink]="'/products'">Products</a>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+  <div>
+      <router-outlet></router-outlet>
+  </div>
