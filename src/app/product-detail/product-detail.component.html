@@ -1,8 +1,40 @@
 <mat-card>
   <mat-card-title>
-    {{pageTitle}}
+    {{pageTitle}}{{product.productName}}
   </mat-card-title>
   <mat-card-content>
+    <div>
+        <img 
+        [src]="product.imageUrl"
+        [title]="product.productName"
+        [style.width.px]="70"
+        [style.margin.px]="70"
+        >
+    </div>
+    <div><h4>Product name: {{product.productName}}</h4></div>
+    <div>Product code: {{product.productCode}}</div>
+    <div>Release data: {{product.releaseDate | date:'dd.MM.yyyy'}}</div>
+    <div>Description: <p>
+      {{product.description}}
+    </p><h5>Price: {{product.price | currency}}</h5></div>
+    <div>
+        <pm-star 
+        [rating]="product.starRating"
+        [starCount]="5"
+        [color]="'accent'"
+        >
+      </pm-star>
+    </div>
 
   </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="onBack()">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+        Back
+    </button>
+    <button mat-raised-button color="accent" (click)="onNext()">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+        Next
+    </button>
+  </mat-card-actions>
 </mat-card>

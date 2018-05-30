@@ -17,9 +17,18 @@ export class ProductService {
 
   getProducts(): Observable<Product[]> {
 
-    return Observable.of(producst)
+    return Observable.of(products)
               .do(data => console.log('All: ', JSON.stringify(data)))
               .catch(this.handleError);
+  }
+
+  getProduct(productId: number): Product {
+    
+    if (isNaN(productId) || productId < 0 || productId > products.length) {
+        return products[0];
+    }
+
+      return products.filter(product => product.productId === productId)[0];
   }
 
   private handleError(err: HttpErrorResponse) {
@@ -40,7 +49,7 @@ export class ProductService {
 
 }
 
-const producst: Product[] = [
+const products: Product[] = [
   {
       "productId": 1,
       "productName": "Leaf Rake",
@@ -62,7 +71,7 @@ const producst: Product[] = [
       "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
   },
   {
-      "productId": 5,
+      "productId": 3,
       "productName": "Hammer",
       "productCode": "TBX-0048",
       "releaseDate": "May 21, 2016",
@@ -72,7 +81,7 @@ const producst: Product[] = [
       "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
   },
   {
-      "productId": 8,
+      "productId": 4,
       "productName": "Saw",
       "productCode": "TBX-0022",
       "releaseDate": "May 15, 2016",
@@ -82,7 +91,7 @@ const producst: Product[] = [
       "imageUrl": "http://openclipart.org/image/300px/svg_to_png/27070/egore911_saw.png"
   },
   {
-      "productId": 10,
+      "productId": 5,
       "productName": "Video Game Controller",
       "productCode": "GMG-0042",
       "releaseDate": "October 15, 2015",

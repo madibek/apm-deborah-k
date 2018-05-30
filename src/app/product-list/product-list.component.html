@@ -39,7 +39,9 @@
               <!-- ProductName Column -->
               <ng-container matColumnDef="productName">
                 <mat-header-cell *matHeaderCellDef> Product </mat-header-cell>
-                <mat-cell *matCellDef="let product"> {{product.productName}} </mat-cell>
+                <mat-cell *matCellDef="let product">
+                  <a [routerLink]="['/products', product.productId]">{{product.productName}}</a>
+                </mat-cell>
               </ng-container>
           
               <!-- ProductCode Column -->
