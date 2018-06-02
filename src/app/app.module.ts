@@ -27,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ProductGuardService } from './services/product-guard.service';
 
 
 @NgModule({
@@ -46,7 +47,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'products', component: ProductListComponent },
-      { path: 'products/:id', component: ProductDetailComponent },
+      {
+        path: 'products/:id',
+        canActivate: [ProductGuardService],
+        component: ProductDetailComponent
+      },
       { path: 'welcome', component: WelcomeComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', component: PageNotFoundComponent }
@@ -62,7 +67,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   ],
   providers: [
     MatSnackBar,
-    ProductService
+    ProductService,
+    ProductGuardService
   ],
   entryComponents: [
     StarComponent
