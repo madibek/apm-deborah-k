@@ -1,20 +1,16 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ProductListComponent } from './product-list/product-list.component';
 import { ConvertToSpacePipe } from './pipes/convert-to-space.pipe';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { RouterModule } from '@angular/router';
 import { ProductGuardService } from './services/product-guard.service';
-import { NgMaterialModule } from '../ng-material/ng-material.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { StarComponent } from './star/star.component';
 import { ProductService } from './services/product.service';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    ReactiveFormsModule,    
-    NgMaterialModule,
+    SharedModule,
     RouterModule.forChild([
       { path: 'products', component: ProductListComponent },
       {
@@ -25,7 +21,7 @@ import { ProductService } from './services/product.service';
     ])
   ],
   exports: [
-    NgMaterialModule
+    SharedModule
   ],
   providers: [
     ProductService,
@@ -34,11 +30,7 @@ import { ProductService } from './services/product.service';
   declarations: [
     ProductListComponent,
     ConvertToSpacePipe,
-    ProductDetailComponent,
-    StarComponent
-  ],
-  entryComponents: [
-    StarComponent
+    ProductDetailComponent
   ]
 })
 export class ProductsModule { }
